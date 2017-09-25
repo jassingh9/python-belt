@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>{{users.alias}}</title>
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'friends/style.css' %}">
+</head>
+
+<body>
+  <div class="right">
+    <h5><a href='/friends'>Home </a><a href="/logout">   Logout</a></h5>
+  </div>
+  <h2>{{users.name}}'s Profile </h2>
+  <p>Name: {{users.name}} {{users.alias}}</p>
+  <p>Email Address: {{users.email}}</p>
+</body>
+
+</html>

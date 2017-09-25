@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login/Registration</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'friends/style.css' %}">
+  </head>
+  <body>
+    {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+          <li>{{message}}</li>
+          {% endfor %}
+      </ul>
+    {% endif %}
+    <h1>Welcome!</h1>
+    <div class="register">
+    <h2>Register</h2>
+    <form action="/register" method="post">
+      {% csrf_token %}
+      <P>Name:
+      <input type="text" name="name"></P>
+      <P>Alias:
+      <input type="text" name="alias"></P>
+      <P>Email:
+      <input type="text" name="email"></P>
+      <P>Password
+      <input type="password" name="password"></P>
+      <p>* Password should be at least 8 characters</p>
+      <P>Confirm PW:
+      <input type="password" name="conf_password"></P>
+      <p>Date of Birth:
+      <input type="date" name="birthday" value="none"></p>
+      <input type="submit" value="Register">
+    </form>
+  </div>
+  <div class="login">
+    <h1>Login</h1>
+    <form action="/login" method="post">
+      {% csrf_token %}
+      <P>Email:
+      <input type="text" name="login_email"></P>
+      <P>Password:
+      <input type="password" name="login_pass"></P>
+      <input type="submit" value="Login">
+    </form>
+      </div>
+
+  </body>
+</html>

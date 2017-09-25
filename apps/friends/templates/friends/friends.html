@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Friends</title>
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'friends/style.css' %}">
+</head>
+
+<body>
+  <div class='container'>
+    <div>
+      <div>
+        <h4>Welcome {{request.session.user_name}}!</h3>
+              </div>
+              <div id="right">
+                  <h5><a href='/logout'>Logout</a></h5>
+              </div>
+          </div>
+          {% if friends_name %}
+              <h4>Here is the list of your friends:</h4>
+        <div>
+          <div>
+            <table>
+              <tr>
+                <th>Alias</th>
+                <th>Action</th>
+              </tr>
+              {% for user in friends_name %}
+              <tr>
+                <td>{{user.alias}}</td>
+                <td>
+                  <a href='/user/{{user.id}}'>View Profile</a> <a href='/user/remove/{{request.session.user}}/{{user.id}}'>Remove as Friend</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+        {% else %}
+        <h4>You don't have friends yet:</h4> {% endif %}
+
+        <h3>Other Users not on your friend's list:</h3> {% if not_friends %}
+        <div>
+          <div>
+            <table>
+              <tr>
+                <th>Alias</th>
+                <th>Action</th>
+              </tr>
+              {% for user in not_friends %} {% if user.id != request.session.user %}
+              <tr>
+                <td><a href='/user/{{user.id}}'>{{user.alias}}</a></td>
+                <td>
+                  <form action='/user/add/{{request.session.user}}/{{user.id}}' method='POST'>
+                    {% csrf_token %}
+                    <input type='submit' value='Add as Friend'>
+                  </form>
+                </td>
+              </tr>
+              {% endif %} {% endfor %}
+            </table>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+</body>

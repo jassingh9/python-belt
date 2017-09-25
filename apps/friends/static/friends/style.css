@@ -1,0 +1,35 @@
+.register{
+  border: 1px solid black;
+  width: 250px;
+}
+.login{
+  border: 1px solid black;
+  width: 250px;
+  margin-left: 300px;
+  margin-top: -350px;
+}
+
+table{
+    width: 250px;
+    border: 1px solid black;
+
+}
+thead {
+    background-color: lightgray;
+}
+tbody {
+    text-align: center;
+}
+tbody > tr:nth-child(even){
+    background-color: lightgray;
+}
+th, td {
+    height: 10px;
+}
+#right{
+  margin-top: -50px;
+  margin-left: 1000px;
+}
+.right{
+  margin-left: 1200px;
+}
